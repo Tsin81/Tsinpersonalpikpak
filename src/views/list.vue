@@ -312,7 +312,7 @@ import axios from 'axios';
           }
         }, [
           h('img', {
-            src: row.thumbnail_link || row.icon_link
+            src: "https://proxy.tsin.site/" + (row.thumbnail_link || row.icon_link)
           }),
           h(NEllipsis, {
               class: 'title',
@@ -1203,13 +1203,18 @@ import axios from 'axios';
   color: rgba(37, 38, 43, 0.36);
 }
 .file-info {
+  /* min-width: 350px; */
   display: flex;
   align-items: center;
 }
 .file-info img {
-  width: 28px;
-  height: 28px;
-  margin-right: 20px;
+  width: 150px;
+  min-width: 50px;
+  height: 150px;
+  min-height: 50px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .file-info .title {
   flex: 1;
@@ -1225,8 +1230,26 @@ import axios from 'axios';
   .list-page {
     padding: 10px;
   }
-  .file-info img {
+  /* .file-info img {
     display: none;
+  } */
+  .file-info .title {
+   margin-left: 10px;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   width: 100%;
+   /* text-align: center; */
+  }
+  .file-info img {
+   margin-left: 10px;
+   /* margin-top: 120px; */
+   margin-bottom: 10px;
+  }
+  .file-info {
+  /* min-width: 350px; */
+  display: block;
+  align-items: left;
+
   }
 }
 .list-page .loading {
