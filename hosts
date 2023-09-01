@@ -2,12 +2,45 @@
 127.0.0.1 vod0393-aliyun18-vip-lixian.mypikpak.com
 127.0.0.1 vod0394-aliyun18-vip-lixian.mypikpak.com
 127.0.0.1 vod0395-aliyun18-vip-lixian.mypikpak.com
-127.0.0.1 dl-a10b-0393.mypikpak.com
-127.0.0.1 dl-a10b-0394.mypikpak.com
-127.0.0.1 dl-a10b-0395.mypikpak.com
+#pikpak域名开始 
+127.0.0.1 dl-a10b-0046.mypikpak.com
+127.0.0.1 dl-a10b-0182.mypikpak.com
+127.0.0.1 dl-a10b-0183.mypikpak.com
+127.0.0.1 dl-a10b-1393.mypikpak.com
+127.0.0.1 dl-a10b-1394.mypikpak.com
+127.0.0.1 dl-a10b-1395.mypikpak.com
+127.0.0.1 dl-a10b-0469.mypikpak.com
+127.0.0.1 dl-a10b-0470.mypikpak.com
 127.0.0.1 dl-a10b-0480.mypikpak.com
 127.0.0.1 dl-a10b-0481.mypikpak.com
 127.0.0.1 dl-a10b-0482.mypikpak.com
 127.0.0.1 dl-a10b-0483.mypikpak.com
 127.0.0.1 dl-a10b-0484.mypikpak.com
+127.0.0.1 dl-a10b-0585.mypikpak.com
+127.0.0.1 dl-a10b-0586.mypikpak.com
+127.0.0.1 dl-a10b-0589.mypikpak.com
+127.0.0.1 dl-a10b-0590.mypikpak.com
+127.0.0.1 dl-a10b-0591.mypikpak.com
+127.0.0.1 dl-a10b-0592.mypikpak.com
+127.0.0.1 dl-a10b-0593.mypikpak.com
+127.0.0.1 dl-a10b-0594.mypikpak.com
+127.0.0.1 dl-a10b-0595.mypikpak.com
+127.0.0.1 dl-a10b-0596.mypikpak.com
+127.0.0.1 dl-a10b-0597.mypikpak.com
+127.0.0.1 dl-a10b-0598.mypikpak.com
+127.0.0.1 dl-a10b-0621.mypikpak.com
+127.0.0.1 dl-a10b-0622.mypikpak.com
+127.0.0.1 dl-a10b-0623.mypikpak.com
+127.0.0.1 dl-a10b-0624.mypikpak.com
+127.0.0.1 dl-a10b-0625.mypikpak.com
+#pikpak域名结束 
+#pikpak的PCDN域名开始 
+127.0.0.1 idx.shub.mypikpak.com
+127.0.0.1 hub5pr.mypikpak.com
+127.0.0.1 hub.dcdn.mypikpak.com
+127.0.0.1 rp.shub.mypikpak.com
+127.0.0.1 hub5emu.mypikpak.com
+#pikpak的PCDN域名结束 
+127.0.0.1 sg-thumbnail-drive.mypikpak.com
+127.0.0.1 static.mypikpak.com
 #pikpak域名结束 
