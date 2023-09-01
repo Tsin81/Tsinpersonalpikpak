@@ -131,7 +131,7 @@
           </n-icon>
         </template>
         <div style="width: 100%; height: calc(100vh - 80px);text-align: center;">
-          <img :src="fileInfo?.web_content_link" style="max-width: 100%; max-height: 100%" name="cs">
+          <img :src="fileInfo?.web_content_link" style="max-width: 100%; max-height: 100%">
         </div>
       </n-card>
     </n-modal>
