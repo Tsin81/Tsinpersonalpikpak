@@ -131,7 +131,7 @@
           </n-icon>
         </template>
         <div style="width: 100%; height: calc(100vh - 80px);text-align: center;">
-          <img :src="fileInfo?.web_content_link" style="max-width: 100%; max-height: 100%">
+          <img :src="'https://proxy.tsin.site/'+fileInfo?.web_content_link" style="max-width: 100%; max-height: 100%">
         </div>
       </n-card>
     </n-modal>
@@ -211,7 +211,7 @@
           <n-form-item label="链接">
             <n-input-group>
               <n-input :value="fileInfo?.web_content_link"></n-input>
-              <n-button type="primary" @click="copy(fileInfo.web_content_link)">复制</n-button>
+              <n-button type="primary" @click="copy('https://proxy.tsin.site/'+fileInfo.web_content_link)">复制</n-button>
             </n-input-group>
           </n-form-item>
         </n-form>
@@ -299,6 +299,9 @@ import axios from 'axios';
             } else if(row.mime_type.indexOf('video') != -1 || row.mime_type.indexOf('image') != -1  || row.mime_type.indexOf('audio') != -1) {
               getFile(row.id)
                 .then(res => {
+                  var cs = res.data
+                  res.data = JSON.parse(JSON.stringify(cs).replace(/https/g, 'https://proxy.tsin.site/https'))
+                  console.log(res.data)
                   fileInfo.value = res.data
                   if(fileInfo.value.web_content_link) {
                     if(row.mime_type.indexOf('video') != -1 || row.mime_type.indexOf('audio') != -1) {
@@ -312,7 +315,7 @@ import axios from 'axios';
           }
         }, [
           h('img', {
-            src: row.thumbnail_link || row.icon_link
+            src: "https://proxy.tsin.site/" + (row.thumbnail_link || row.icon_link)
           }),
           h(NEllipsis, {
               class: 'title',
@@ -408,6 +411,7 @@ import axios from 'axios';
                 case 'copyDown':
                   getFile(row.id)
                     .then((res:any) => {
+                      res.data.web_content_link = 'https://proxy.tsin.site/' + res.data.web_content_link
                       fileInfo.value = res.data
                       showCopy.value = true
                     })
@@ -424,7 +428,7 @@ import axios from 'axios';
                 case 'base':
                   window.localStorage.setItem('pikpakUploadFolder', JSON.stringify(row))
                   break
-                case 'delete': 
+                case 'delete':
                   dialog.warning({
                       title: '警告',
                       content: '确定删除' + row.name  + '？',
@@ -791,7 +795,7 @@ import axios from 'axios';
       .then((info:any) => {
         streamSaver.mitm = 'mitm.html'
         const fileStream = streamSaver.createWriteStream(info.data.name)
-        fetch(info.data.web_content_link).then((res:any) => {
+        fetch("https://proxy.tsin.site/"+info.data.web_content_link).then((res:any) => {
           if(!window.$downId) {
             window.$downId = []
           }
@@ -1126,50 +1130,50 @@ import axios from 'axios';
   const sharePikPakPassword = ref()
   const sharePikPakUrl = ref()
   const sharePikPakPostLoading = ref()
-  const sharePikPakPost = () => {
-    sharePikPakPostLoading.value = true
-    getFile(sharePikpak.value.id)
-      .then((res:any) => {
-        axios.post('https://pikpak-depot.z10.workers.dev', {
-          password: sharePikPakPassword.value || '',
-          uid: res.data.user_id,
-          Name: res.data.hash,
-          delete_time: String(new Date().getTime() + (24 * 60 * 60 * 1000)),
-          info: {
-            name: res.data.name,
-            file_extension: res.data.file_extension,
-            hash: res.data.hash,
-            id: res.data.id,
-            md5_checksum: res.data.md5_checksum,
-            mime_type: res.data.mime_type,
-            size: res.data.size,
-            thumbnail_link: res.data.thumbnail_link,
-            web_content_link:  res.data.web_content_link
-          },
-          info2: {
-            medias: res.data.medias,
-          },
-          info3: {
-            links: res.data.links,
-          }
-        })
-        .then((res:any) => {
-          sharePikPakUrl.value =  window.location.origin + window.location.pathname + router.resolve({
-            name: 'shareInfo',
-            params: {
-              id: res.data.id
-            }
-          }).href
-          copy(sharePikPakUrl.value + (sharePikPakPassword.value ? (' 提取密码  ' + sharePikPakPassword.value) : ''))
-        }).catch(res => {
-          window.$message.error(res.response.error || '出错了')
-        })
-        .finally(() => {
-          sharePikPakPostLoading.value = false
-          showSharePikPak.value = false
-        })
-      })
-  }
+  // const sharePikPakPost = () => {
+  //   sharePikPakPostLoading.value = true
+  //   getFile(sharePikpak.value.id)
+  //     .then((res:any) => {
+  //       axios.post('https://pikpak-depot.z10.workers.dev', {
+  //         password: sharePikPakPassword.value || '',
+  //         uid: res.data.user_id,
+  //         Name: res.data.hash,
+  //         delete_time: String(new Date().getTime() + (24 * 60 * 60 * 1000)),
+  //         info: {
+  //           name: res.data.name,
+  //           file_extension: res.data.file_extension,
+  //           hash: res.data.hash,
+  //           id: res.data.id,
+  //           md5_checksum: res.data.md5_checksum,
+  //           mime_type: res.data.mime_type,
+  //           size: res.data.size,
+  //           thumbnail_link: res.data.thumbnail_link,
+  //           web_content_link:  "https://proxy.tsin.site/"+res.data.web_content_link
+  //         },
+  //         info2: {
+  //           medias: res.data.medias,
+  //         },
+  //         info3: {
+  //           links: res.data.links,
+  //         }
+  //       })
+  //       .then((res:any) => {
+  //         sharePikPakUrl.value =  window.location.origin + window.location.pathname + router.resolve({
+  //           name: 'shareInfo',
+  //           params: {
+  //             id: res.data.id
+  //           }
+  //         }).href
+  //         copy(sharePikPakUrl.value + (sharePikPakPassword.value ? (' 提取密码  ' + sharePikPakPassword.value) : ''))
+  //       }).catch(res => {
+  //         window.$message.error(res.response.error || '出错了')
+  //       })
+  //       .finally(() => {
+  //         sharePikPakPostLoading.value = false
+  //         showSharePikPak.value = false
+  //       })
+  //     })
+  // }
 </script>
 
 <style>
@@ -1203,13 +1207,18 @@ import axios from 'axios';
   color: rgba(37, 38, 43, 0.36);
 }
 .file-info {
+  /* min-width: 350px; */
   display: flex;
   align-items: center;
 }
 .file-info img {
-  width: 28px;
-  height: 28px;
-  margin-right: 20px;
+  width: 150px;
+  min-width: 50px;
+  height: 150px;
+  min-height: 50px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .file-info .title {
   flex: 1;
@@ -1225,8 +1234,26 @@ import axios from 'axios';
   .list-page {
     padding: 10px;
   }
-  .file-info img {
+  /* .file-info img {
     display: none;
+  } */
+  .file-info .title {
+   margin-left: 10px;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   width: 100%;
+   /* text-align: center; */
+  }
+  .file-info img {
+   margin-left: 10px;
+   /* margin-top: 120px; */
+   margin-bottom: 10px;
+  }
+  .file-info {
+  /* min-width: 350px; */
+  display: block;
+  align-items: left;
+
   }
 }
 .list-page .loading {

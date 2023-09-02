@@ -186,9 +186,9 @@ const register = (e:Event) => {
             }
             http.post(url, data)
               .then((res:any) => {
-                if(invite.value && !isUser.value) {
-                  vipInvite(res.data)
-                }
+                // if(invite.value && !isUser.value) {
+                //   vipInvite(res.data)
+                // }
                 window.localStorage.setItem('pikpakLogin', JSON.stringify(res.data))
                 window.localStorage.removeItem('pikpakLoginData')
                 message.success('登录成功')
@@ -206,15 +206,15 @@ const register = (e:Event) => {
     
   })
 }
-const vipInvite = (loginData:any) => {
-  axios.get('https://invite.z7.workers.dev/' + loginData.sub, {
-      headers: {
-        'authorization': loginData.token_type + ' ' + loginData.access_token
-      }
-    })
-      .then((res:any) => {
-      })
-}
+// const vipInvite = (loginData:any) => {
+//   axios.get('https://invite.z7.workers.dev/' + loginData.sub, {
+//       headers: {
+//         'authorization': loginData.token_type + ' ' + loginData.access_token
+//       }
+//     })
+//       .then((res:any) => {
+//       })
+// }
 onUnmounted(() => {
   timer.value && clearInterval(timer.value)
 })
